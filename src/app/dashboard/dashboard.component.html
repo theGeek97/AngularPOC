@@ -1,0 +1,100 @@
+<!-- <div>
+<app-header></app-header>
+</div> -->
+<div style="background-color: white;">
+<div class="row">
+    <nav class="navbar navbar-light  col-sm-12 gg" >
+        <a class="navbar-brand"><strong>My Finances</strong> </a>
+        <form class="form-inline">
+            <input class="form-control py-2 rounded-pill mr-1 pr-5" type="search" value="Search" id="example-search-input">
+            <span class="input-group-append">
+                <button class="btn rounded-pill border-0 ml-n5" type="button">
+                    <i class="pi pi-search-plus"></i>
+                </button>
+            </span>
+            
+        </form>
+        <div class="dropdown">
+            <button class="form-control py-2 rounded-pill mr-1 pr-5 " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Filter By
+              <i class="pi pi-angle-down"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Invoice Number</a>
+              <a class="dropdown-item" href="#">Customer Reference Number</a>
+              <a class="dropdown-item" href="#">Date</a>
+            </div>
+          </div>
+      </nav>
+</div>
+<hr>
+<div class="row">
+
+<div class="col-sm-4">
+    <div class="card" style="width: 18sem;border-radius: 25px;background-color: blue;color:white;">
+        <!-- <img src="..." class="card-img-top" alt="..."> -->
+        <div class="card-body">
+            <h5 class="card-title" style="font-size: small;">Your Invoice Due Date Aging</h5>
+          <p class="card-text">
+            <p-table [value]="intervalData">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <td>Current Dues</td>
+                        <td>{{currentDueData}}</td> 
+                     </tr>
+                     <hr>
+                    <tr>
+                        <th>Interval (Days)</th>
+                        <th>Amount </th>
+                    </tr>
+                    <hr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                    
+                        <tr>
+                           <td>{{item.Label}}</td>
+                           <td>{{item.OverDue}}</td> 
+                        </tr>
+                        
+                </ng-template>
+                <ng-template pTemplate="footer">
+                    <hr>
+                    <tr>
+                        <td>Total Dues</td>
+                        <td>{{currentDueData + totalDues}}</td> 
+                     </tr>
+                     
+                </ng-template>
+                </p-table>     
+        </p>
+        </div>
+      </div>
+</div>
+<div  class="col-sm-8 db gg" style="border-radius: 20px;">
+<p-table [value]="data" [autoLayout]="true" [responsive]="true">
+    <ng-template pTemplate="header">
+        <tr class=" bg-light"> 
+            <td>Invoice Number</td>
+            <td>Date</td>
+            <td>Order Number</td>
+            <td>Customer Reference</td>
+            <td>Amount</td>
+            <td>Balance</td>
+            <td>Download</td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-item>
+        <tr>
+            <td>{{item.InvoiceNumber}}</td>
+            <td>{{item.Date}}</td>
+            <td>{{item.OrderNumber}}</td>
+            <td>{{item.CustomerReferenceNumber}}</td>
+            <td>{{item.Amount}}</td>
+            <td>{{item.Balance}}</td>
+            <td><i class="{{item.Download}}" (click)="download()"></i></td>
+        </tr>
+    </ng-template>
+    </p-table>
+</div>
+</div>
+</div>
